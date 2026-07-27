@@ -8,7 +8,7 @@ import 'package:pinball_flame/pinball_flame.dart';
 /// Spawns a new [Ball] into the game when all balls are lost and still
 /// [GameStatus.playing].
 class BallSpawningBehavior extends Component
-    with FlameBlocListenable<GameBloc, GameState>, HasGameRef {
+    with FlameBlocListenable<GameBloc, GameState>, HasGameReference {
   @override
   bool listenWhen(GameState? previousState, GameState newState) {
     if (!newState.status.isPlaying) return false;
@@ -22,8 +22,8 @@ class BallSpawningBehavior extends Component
 
   @override
   void onNewState(GameState state) {
-    final plunger = gameRef.descendants().whereType<Plunger>().single;
-    final canvas = gameRef.descendants().whereType<ZCanvasComponent>().single;
+    final plunger = game.descendants().whereType<Plunger>().single;
+    final canvas = game.descendants().whereType<ZCanvasComponent>().single;
     final characterTheme = readBloc<CharacterThemeCubit, CharacterThemeState>()
         .state
         .characterTheme;

@@ -125,7 +125,7 @@ class _FlapperExit extends LayerSensor {
 /// {@endtemplate}
 @visibleForTesting
 class FlapSpriteAnimationComponent extends SpriteAnimationComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   /// {@macro flap_sprite_animation_component}
   FlapSpriteAnimationComponent()
       : super(
@@ -140,7 +140,7 @@ class FlapSpriteAnimationComponent extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final spriteSheet = gameRef.images.fromCache(
+    final spriteSheet = game.images.fromCache(
       Assets.images.flapper.flap.keyName,
     );
 
@@ -170,7 +170,7 @@ class FlapSpriteAnimationComponent extends SpriteAnimationComponent
 }
 
 class _BackSupportSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _BackSupportSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -183,7 +183,7 @@ class _BackSupportSpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.flapper.backSupport.keyName,
       ),
     );
@@ -193,7 +193,7 @@ class _BackSupportSpriteComponent extends SpriteComponent
 }
 
 class _FrontSupportSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _FrontSupportSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -206,7 +206,7 @@ class _FrontSupportSpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.flapper.frontSupport.keyName,
       ),
     );

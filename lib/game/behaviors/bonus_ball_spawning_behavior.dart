@@ -7,7 +7,7 @@ import 'package:pinball_flame/pinball_flame.dart';
 /// After a duration, spawns a bonus ball from the [DinoWalls] and boosts it
 /// into the middle of the board.
 /// {@endtemplate}
-class BonusBallSpawningBehavior extends TimerComponent with HasGameRef {
+class BonusBallSpawningBehavior extends TimerComponent with HasGameReference {
   /// {@macro bonus_ball_spawning_behavior}
   BonusBallSpawningBehavior()
       : super(
@@ -20,7 +20,7 @@ class BonusBallSpawningBehavior extends TimerComponent with HasGameRef {
     final characterTheme = readBloc<CharacterThemeCubit, CharacterThemeState>()
         .state
         .characterTheme;
-    gameRef.descendants().whereType<ZCanvasComponent>().single.add(
+    game.descendants().whereType<ZCanvasComponent>().single.add(
           Ball(assetPath: characterTheme.ball.keyName)
             ..add(BallImpulsingBehavior(impulse: Vector2(-40, 0)))
             ..initialPosition = Vector2(29.2, -24.5)

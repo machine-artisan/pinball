@@ -202,7 +202,9 @@ void main() {
 
           final fixture = ball.body.fixtures[0];
           expect(fixture.shape.shapeType, equals(ShapeType.circle));
-          expect(fixture.shape.radius, equals(2.065));
+          // forge2d stores shape values as 32-bit floats internally, so
+          // exact double equality is not reliable here.
+          expect(fixture.shape.radius, closeTo(2.065, 0.0001));
         },
       );
 

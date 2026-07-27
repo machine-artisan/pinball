@@ -12,7 +12,9 @@ enum GoogleLetterSpriteState {
 /// Circular decal that represents a letter in "GOOGLE" for a given index.
 /// {@endtemplate}
 class GoogleLetter extends SpriteGroupComponent<GoogleLetterSpriteState>
-    with HasGameRef, FlameBlocListenable<GoogleWordCubit, GoogleWordState> {
+    with
+        HasGameReference,
+        FlameBlocListenable<GoogleWordCubit, GoogleWordState> {
   /// {@macro google_letter}
   GoogleLetter(int index)
       : _litAssetPath = _spritePaths[index][GoogleLetterSpriteState.lit]!,
@@ -40,10 +42,10 @@ class GoogleLetter extends SpriteGroupComponent<GoogleLetterSpriteState>
 
     final sprites = {
       GoogleLetterSpriteState.lit: Sprite(
-        gameRef.images.fromCache(_litAssetPath),
+        game.images.fromCache(_litAssetPath),
       ),
       GoogleLetterSpriteState.dimmed: Sprite(
-        gameRef.images.fromCache(_dimmedAssetPath),
+        game.images.fromCache(_dimmedAssetPath),
       ),
     };
     this.sprites = sprites;

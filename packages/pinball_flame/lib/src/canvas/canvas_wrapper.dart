@@ -17,6 +17,13 @@ class CanvasWrapper implements Canvas {
       canvas.clipRRect(rrect, doAntiAlias: doAntiAlias);
 
   @override
+  void clipRSuperellipse(
+    RSuperellipse rsuperellipse, {
+    bool doAntiAlias = true,
+  }) =>
+      canvas.clipRSuperellipse(rsuperellipse, doAntiAlias: doAntiAlias);
+
+  @override
   void clipRect(
     Rect rect, {
     ClipOp clipOp = ClipOp.intersect,
@@ -107,6 +114,10 @@ class CanvasWrapper implements Canvas {
 
   @override
   void drawRRect(RRect rrect, Paint paint) => canvas.drawRRect(rrect, paint);
+
+  @override
+  void drawRSuperellipse(RSuperellipse rsuperellipse, Paint paint) =>
+      canvas.drawRSuperellipse(rsuperellipse, paint);
 
   @override
   void drawRawAtlas(

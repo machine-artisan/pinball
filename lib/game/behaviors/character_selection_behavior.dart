@@ -10,18 +10,18 @@ import 'package:platform_helper/platform_helper.dart';
 class CharacterSelectionBehavior extends Component
     with
         FlameBlocListenable<CharacterThemeCubit, CharacterThemeState>,
-        HasGameRef {
+        HasGameReference {
   @override
   void onNewState(CharacterThemeState state) {
     if (!readProvider<PlatformHelper>().isMobile) {
-      gameRef
+      game
           .descendants()
           .whereType<ArcadeBackground>()
           .single
           .bloc
           .onCharacterSelected(state.characterTheme);
     }
-    gameRef
+    game
         .descendants()
         .whereType<Ball>()
         .single

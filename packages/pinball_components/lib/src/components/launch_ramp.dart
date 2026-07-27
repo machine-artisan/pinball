@@ -97,13 +97,14 @@ class _LaunchRampBase extends BodyComponent with Layered, ZIndex {
   }
 }
 
-class _LaunchRampBaseSpriteComponent extends SpriteComponent with HasGameRef {
+class _LaunchRampBaseSpriteComponent extends SpriteComponent
+    with HasGameReference {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.launchRamp.ramp.keyName,
       ),
     );
@@ -115,13 +116,13 @@ class _LaunchRampBaseSpriteComponent extends SpriteComponent with HasGameRef {
 }
 
 class _LaunchRampBackgroundRailingSpriteComponent extends SpriteComponent
-    with HasGameRef {
+    with HasGameReference {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.launchRamp.backgroundRailing.keyName,
       ),
     );
@@ -182,13 +183,13 @@ class _LaunchRampForegroundRailing extends BodyComponent with ZIndex {
 }
 
 class _LaunchRampForegroundRailingSpriteComponent extends SpriteComponent
-    with HasGameRef {
+    with HasGameReference {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.launchRamp.foregroundRailing.keyName,
       ),
     );

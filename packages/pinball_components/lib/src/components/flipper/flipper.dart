@@ -114,7 +114,7 @@ class Flipper extends BodyComponent with KeyboardHandler, InitialPosition {
   }
 }
 
-class _FlipperSpriteComponent extends SpriteComponent with HasGameRef {
+class _FlipperSpriteComponent extends SpriteComponent with HasGameReference {
   _FlipperSpriteComponent({required BoardSide side})
       : _side = side,
         super(anchor: Anchor.center);
@@ -125,7 +125,7 @@ class _FlipperSpriteComponent extends SpriteComponent with HasGameRef {
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         (_side.isLeft)
             ? Assets.images.flipper.left.keyName
             : Assets.images.flipper.right.keyName,

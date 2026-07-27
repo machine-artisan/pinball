@@ -8,6 +8,7 @@ import 'package:pinball_components/gen/assets.gen.dart';
 import 'package:pinball_components/pinball_components.dart' hide Assets;
 import 'package:pinball_components/src/components/bumping_behavior.dart';
 import 'package:pinball_components/src/components/kicker/behaviors/behaviors.dart';
+import 'package:vector_math/vector_math_64.dart' as vm64;
 
 export 'cubit/kicker_cubit.dart';
 
@@ -123,17 +124,20 @@ class Kicker extends BodyComponent with InitialPosition {
       FixtureDef(bouncyEdge, userData: 'bouncy_edge'),
     ];
 
-    final centroid = geometry.centroid(
-      [
-        upperCircle.position + Vector2(0, -upperCircle.radius),
-        lowerCircle.position +
-            Vector2(
-              lowerCircle.radius * math.cos(quarterPi) * -direction,
-              lowerCircle.radius * math.sin(quarterPi),
-            ),
-        wallFacingEdge.vertex2,
-      ],
-    );
+    // forge2d's [Vector2] and geometry's [Vector2] are distinct types (see
+    // pinball_flame's shape classes), so the points must be converted at
+    // this boundary.
+    final centroidPoints = [
+      upperCircle.position + Vector2(0, -upperCircle.radius),
+      lowerCircle.position +
+          Vector2(
+            lowerCircle.radius * math.cos(quarterPi) * -direction,
+            lowerCircle.radius * math.sin(quarterPi),
+          ),
+      wallFacingEdge.vertex2,
+    ].map((p) => vm64.Vector2(p.x, p.y)).toList();
+    final centroidPoint = geometry.centroid(centroidPoints);
+    final centroid = Vector2(centroidPoint.x, centroidPoint.y);
     for (final fixtureDef in fixturesDefs) {
       fixtureDef.shape.moveBy(-centroid);
     }
@@ -154,7 +158,7 @@ class Kicker extends BodyComponent with InitialPosition {
 }
 
 class _KickerSpriteGroupComponent extends SpriteGroupComponent<KickerState>
-    with HasGameRef, ParentIsA<Kicker> {
+    with HasGameReference, ParentIsA<Kicker> {
   _KickerSpriteGroupComponent({
     required BoardSide side,
     required KickerState state,
@@ -174,14 +178,14 @@ class _KickerSpriteGroupComponent extends SpriteGroupComponent<KickerState>
 
     final sprites = {
       KickerState.lit: Sprite(
-        gameRef.images.fromCache(
+        game.images.fromCache(
           (_side.isLeft)
               ? Assets.images.kicker.left.lit.keyName
               : Assets.images.kicker.right.lit.keyName,
         ),
       ),
       KickerState.dimmed: Sprite(
-        gameRef.images.fromCache(
+        game.images.fromCache(
           (_side.isLeft)
               ? Assets.images.kicker.left.dimmed.keyName
               : Assets.images.kicker.right.dimmed.keyName,

@@ -17,7 +17,7 @@ import 'package:share_repository/share_repository.dart';
 /// {@template backbox}
 /// The [Backbox] of the pinball machine.
 /// {@endtemplate}
-class Backbox extends PositionComponent with ZIndex, HasGameRef {
+class Backbox extends PositionComponent with ZIndex, HasGameReference {
   /// {@macro backbox}
   Backbox({
     required LeaderboardRepository leaderboardRepository,
@@ -77,7 +77,7 @@ class Backbox extends PositionComponent with ZIndex, HasGameRef {
       _display.add(LeaderboardFailureDisplay());
     } else if (state is InitialsFormState) {
       if (readProvider<PlatformHelper>().isMobile) {
-        gameRef.overlays.add(PinballGame.mobileControlsOverlay);
+        game.overlays.add(PinballGame.mobileControlsOverlay);
       }
       _display.add(
         InitialsInputDisplay(
@@ -95,7 +95,7 @@ class Backbox extends PositionComponent with ZIndex, HasGameRef {
         ),
       );
     } else if (state is InitialsSuccessState) {
-      gameRef.overlays.remove(PinballGame.mobileControlsOverlay);
+      game.overlays.remove(PinballGame.mobileControlsOverlay);
 
       _display.add(
         GameOverInfoDisplay(
@@ -148,7 +148,7 @@ class Backbox extends PositionComponent with ZIndex, HasGameRef {
   }
 }
 
-class _BackboxSpriteComponent extends SpriteComponent with HasGameRef {
+class _BackboxSpriteComponent extends SpriteComponent with HasGameReference {
   _BackboxSpriteComponent() : super(anchor: Anchor.bottomCenter);
 
   @override
@@ -156,7 +156,7 @@ class _BackboxSpriteComponent extends SpriteComponent with HasGameRef {
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.backbox.marquee.keyName,
       ),
     );

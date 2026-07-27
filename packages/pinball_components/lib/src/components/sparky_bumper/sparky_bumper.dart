@@ -127,7 +127,7 @@ class SparkyBumper extends BodyComponent with InitialPosition, ZIndex {
 
 class _SparkyBumperSpriteGroupComponent
     extends SpriteGroupComponent<SparkyBumperState>
-    with HasGameRef, ParentIsA<SparkyBumper> {
+    with HasGameReference, ParentIsA<SparkyBumper> {
   _SparkyBumperSpriteGroupComponent({
     required String litAssetPath,
     required String dimmedAssetPath,
@@ -151,10 +151,10 @@ class _SparkyBumperSpriteGroupComponent
 
     final sprites = {
       SparkyBumperState.lit: Sprite(
-        gameRef.images.fromCache(_litAssetPath),
+        game.images.fromCache(_litAssetPath),
       ),
       SparkyBumperState.dimmed: Sprite(
-        gameRef.images.fromCache(_dimmedAssetPath),
+        game.images.fromCache(_dimmedAssetPath),
       ),
     };
     this.sprites = sprites;

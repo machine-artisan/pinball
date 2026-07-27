@@ -99,7 +99,7 @@ class Baseboard extends BodyComponent with InitialPosition {
   }
 }
 
-class _BaseboardSpriteComponent extends SpriteComponent with HasGameRef {
+class _BaseboardSpriteComponent extends SpriteComponent with HasGameReference {
   _BaseboardSpriteComponent({required BoardSide side})
       : _side = side,
         super(
@@ -113,7 +113,7 @@ class _BaseboardSpriteComponent extends SpriteComponent with HasGameRef {
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         (_side.isLeft)
             ? Assets.images.baseboard.left.keyName
             : Assets.images.baseboard.right.keyName,

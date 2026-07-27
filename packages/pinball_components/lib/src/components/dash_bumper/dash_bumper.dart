@@ -138,7 +138,9 @@ class DashBumper extends BodyComponent with InitialPosition {
 @visibleForTesting
 class DashBumperSpriteGroupComponent
     extends SpriteGroupComponent<DashBumperSpriteState>
-    with HasGameRef, FlameBlocListenable<DashBumpersCubit, DashBumpersState> {
+    with
+        HasGameReference,
+        FlameBlocListenable<DashBumpersCubit, DashBumpersState> {
   DashBumperSpriteGroupComponent({
     required DashBumperId id,
     required String activeAssetPath,
@@ -172,9 +174,9 @@ class DashBumperSpriteGroupComponent
 
     final sprites = {
       DashBumperSpriteState.active:
-          Sprite(gameRef.images.fromCache(_activeAssetPath)),
+          Sprite(game.images.fromCache(_activeAssetPath)),
       DashBumperSpriteState.inactive:
-          Sprite(gameRef.images.fromCache(_inactiveAssetPath)),
+          Sprite(game.images.fromCache(_inactiveAssetPath)),
     };
     this.sprites = sprites;
     current = DashBumperSpriteState.inactive;

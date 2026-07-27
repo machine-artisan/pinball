@@ -65,7 +65,8 @@ class SkillShot extends BodyComponent with ZIndex {
   }
 }
 
-class _RolloverDecalSpriteComponent extends SpriteComponent with HasGameRef {
+class _RolloverDecalSpriteComponent extends SpriteComponent
+    with HasGameReference {
   _RolloverDecalSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -78,7 +79,7 @@ class _RolloverDecalSpriteComponent extends SpriteComponent with HasGameRef {
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.skillShot.decal.keyName,
       ),
     );
@@ -92,7 +93,7 @@ class _RolloverDecalSpriteComponent extends SpriteComponent with HasGameRef {
 /// {@endtemplate}
 @visibleForTesting
 class PinSpriteAnimationComponent extends SpriteAnimationComponent
-    with HasGameRef {
+    with HasGameReference {
   /// {@macro pin_sprite_animation_component}
   PinSpriteAnimationComponent()
       : super(
@@ -106,7 +107,7 @@ class PinSpriteAnimationComponent extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final spriteSheet = gameRef.images.fromCache(
+    final spriteSheet = game.images.fromCache(
       Assets.images.skillShot.pin.keyName,
     );
 
@@ -137,7 +138,7 @@ class PinSpriteAnimationComponent extends SpriteAnimationComponent
 
 class _TextDecalSpriteGroupComponent
     extends SpriteGroupComponent<SkillShotSpriteState>
-    with HasGameRef, ParentIsA<SkillShot> {
+    with HasGameReference, ParentIsA<SkillShot> {
   _TextDecalSpriteGroupComponent({
     required SkillShotSpriteState state,
   }) : super(
@@ -153,10 +154,10 @@ class _TextDecalSpriteGroupComponent
 
     final sprites = {
       SkillShotSpriteState.lit: Sprite(
-        gameRef.images.fromCache(Assets.images.skillShot.lit.keyName),
+        game.images.fromCache(Assets.images.skillShot.lit.keyName),
       ),
       SkillShotSpriteState.dimmed: Sprite(
-        gameRef.images.fromCache(Assets.images.skillShot.dimmed.keyName),
+        game.images.fromCache(Assets.images.skillShot.dimmed.keyName),
       ),
     };
     this.sprites = sprites;

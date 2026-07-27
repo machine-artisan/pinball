@@ -32,7 +32,7 @@ final _subtitleTextPaint = TextPaint(
 /// {@template initials_input_display}
 /// Display that handles the user input on the game over view.
 /// {@endtemplate}
-class InitialsInputDisplay extends Component with HasGameRef {
+class InitialsInputDisplay extends Component with HasGameReference {
   /// {@macro initials_input_display}
   InitialsInputDisplay({
     required int score,
@@ -150,7 +150,8 @@ class _NameLabelTextComponent extends TextComponent {
   }
 }
 
-class _CharacterIconSpriteComponent extends SpriteComponent with HasGameRef {
+class _CharacterIconSpriteComponent extends SpriteComponent
+    with HasGameReference {
   _CharacterIconSpriteComponent(String characterIconPath)
       : _characterIconPath = characterIconPath,
         super(
@@ -163,7 +164,7 @@ class _CharacterIconSpriteComponent extends SpriteComponent with HasGameRef {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    final sprite = Sprite(gameRef.images.fromCache(_characterIconPath));
+    final sprite = Sprite(game.images.fromCache(_characterIconPath));
     this.sprite = sprite;
     size = sprite.originalSize / 20;
   }
@@ -264,7 +265,7 @@ class InitialsLetterPrompt extends PositionComponent {
   }
 }
 
-class _DividerSpriteComponent extends SpriteComponent with HasGameRef {
+class _DividerSpriteComponent extends SpriteComponent with HasGameReference {
   _DividerSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -275,14 +276,14 @@ class _DividerSpriteComponent extends SpriteComponent with HasGameRef {
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(Assets.images.backbox.displayDivider.keyName),
+      game.images.fromCache(Assets.images.backbox.displayDivider.keyName),
     );
     this.sprite = sprite;
     size = sprite.originalSize / 20;
   }
 }
 
-class _InstructionsComponent extends PositionComponent with HasGameRef {
+class _InstructionsComponent extends PositionComponent with HasGameReference {
   _InstructionsComponent()
       : super(
           anchor: Anchor.center,

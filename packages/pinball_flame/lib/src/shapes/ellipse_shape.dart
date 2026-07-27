@@ -1,6 +1,7 @@
 import 'package:flame/extensions.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:geometry/geometry.dart';
+import 'package:vector_math/vector_math_64.dart' as vm64;
 
 /// {@template ellipse_shape}
 /// Creates an ellipse.
@@ -12,13 +13,15 @@ class EllipseShape extends ChainShape {
     required this.majorRadius,
     required this.minorRadius,
   }) {
-    createChain(
-      calculateEllipse(
-        center: center,
-        majorRadius: majorRadius,
-        minorRadius: minorRadius,
-      ),
+    // forge2d's [Vector2] and geometry's [Vector2] are distinct types (see
+    // arc_shape.dart), so the ellipse points must be converted at this
+    // boundary.
+    final points = calculateEllipse(
+      center: vm64.Vector2(center.x, center.y),
+      majorRadius: majorRadius,
+      minorRadius: minorRadius,
     );
+    createChain(points.map((p) => Vector2(p.x, p.y)).toList());
   }
 
   /// The top left corner of the ellipse.

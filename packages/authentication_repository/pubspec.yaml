@@ -7,14 +7,14 @@ environment:
   sdk: "^3.4.3"
 
 dependencies:
-  firebase_auth: ^5.1.1
-  firebase_core: ^3.1.1
+  firebase_auth: ^6.5.6
+  firebase_core: ^4.12.1
   flutter:
     sdk: flutter
-  intl: ^0.19.0
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
-  very_good_analysis: ^6.0.0
+  very_good_analysis: ^10.3.0

@@ -90,7 +90,7 @@ class Slingshot extends BodyComponent with InitialPosition {
   }
 }
 
-class _SlingshotSpriteComponent extends SpriteComponent with HasGameRef {
+class _SlingshotSpriteComponent extends SpriteComponent with HasGameReference {
   _SlingshotSpriteComponent(
     String path, {
     required double angle,
@@ -105,7 +105,7 @@ class _SlingshotSpriteComponent extends SpriteComponent with HasGameRef {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    final sprite = Sprite(gameRef.images.fromCache(_path));
+    final sprite = Sprite(game.images.fromCache(_path));
     this.sprite = sprite;
     size = sprite.originalSize / 10;
   }

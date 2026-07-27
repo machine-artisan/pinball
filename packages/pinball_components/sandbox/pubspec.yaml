@@ -8,9 +8,9 @@ environment:
 
 dependencies:
   dashbook: ^0.1.7
-  flame: ^1.18.0
-  flame_bloc: ^1.12.0
-  flame_forge2d: ^0.18.1
+  flame: ^1.38.0
+  flame_bloc: ^1.12.24
+  flame_forge2d: ^0.19.3+7
   flutter:
     sdk: flutter
   pinball_components:
@@ -23,7 +23,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^2.4.0
+  very_good_analysis: ^10.3.0
 
 flutter:
   uses-material-design: true

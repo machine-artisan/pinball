@@ -4,7 +4,7 @@ import 'package:pinball_components/pinball_components.dart';
 
 /// Joints the [Flipper] to allow pivoting around one end.
 class FlipperJointingBehavior extends Component
-    with ParentIsA<Flipper>, HasGameRef {
+    with ParentIsA<Flipper>, HasGameReference {
   @override
   Future<void> onLoad() async {
     await super.onLoad();

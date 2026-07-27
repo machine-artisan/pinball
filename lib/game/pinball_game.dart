@@ -285,7 +285,8 @@ class DebugPinballGame extends PinballGame with PanDetector {
 }
 
 // coverage:ignore-start
-class PreviewLine extends PositionComponent with HasGameRef<DebugPinballGame> {
+class PreviewLine extends PositionComponent
+    with HasGameReference<DebugPinballGame> {
   static final _previewLinePaint = Paint()
     ..color = Colors.pink
     ..strokeWidth = 0.4
@@ -295,17 +296,18 @@ class PreviewLine extends PositionComponent with HasGameRef<DebugPinballGame> {
   void render(Canvas canvas) {
     super.render(canvas);
 
-    if (gameRef.lineEnd != null) {
+    if (game.lineEnd != null) {
       canvas.drawLine(
-        gameRef.lineStart!.toOffset(),
-        gameRef.lineEnd!.toOffset(),
+        game.lineStart!.toOffset(),
+        game.lineEnd!.toOffset(),
         _previewLinePaint,
       );
     }
   }
 }
 
-class _DebugInformation extends Component with HasGameRef<DebugPinballGame> {
+class _DebugInformation extends Component
+    with HasGameReference<DebugPinballGame> {
   final _debugTextPaint = TextPaint(
     style: const TextStyle(
       color: Colors.green,
@@ -318,14 +320,14 @@ class _DebugInformation extends Component with HasGameRef<DebugPinballGame> {
   @override
   void render(Canvas canvas) {
     final debugText = [
-      // 'FPS: ${gameRef.fps().toStringAsFixed(1)}',
-      'BALLS: ${gameRef.descendants().whereType<Ball>().length}',
+      // 'FPS: ${game.fps().toStringAsFixed(1)}',
+      'BALLS: ${game.descendants().whereType<Ball>().length}',
     ].join(' | ');
 
     final height = _debugTextPaint.getLineMetrics(debugText).height;
-    final position = Vector2(0, gameRef.camera.viewport.size.y - height);
+    final position = Vector2(0, game.camera.viewport.size.y - height);
     canvas.drawRect(
-      position & Vector2(gameRef.camera.viewport.size.x, height),
+      position & Vector2(game.camera.viewport.size.x, height),
       _debugBackgroundPaint,
     );
     _debugTextPaint.render(canvas, debugText, position);

@@ -61,7 +61,7 @@ class ArcadeBackground extends Component with ZIndex {
 class ArcadeBackgroundSpriteComponent extends SpriteComponent
     with
         FlameBlocListenable<ArcadeBackgroundCubit, ArcadeBackgroundState>,
-        HasGameRef {
+        HasGameReference {
   /// {@macro arcade_background_sprite_component}
   ArcadeBackgroundSpriteComponent({required String? assetPath})
       : _assetPath = assetPath,
@@ -75,7 +75,7 @@ class ArcadeBackgroundSpriteComponent extends SpriteComponent
   @override
   void onNewState(ArcadeBackgroundState state) {
     sprite = Sprite(
-      gameRef.images.fromCache(state.characterTheme.background.keyName),
+      game.images.fromCache(state.characterTheme.background.keyName),
     );
   }
 
@@ -83,7 +83,7 @@ class ArcadeBackgroundSpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images
+      game.images
           .fromCache(_assetPath ?? theme.Assets.images.dash.background.keyName),
     );
     this.sprite = sprite;

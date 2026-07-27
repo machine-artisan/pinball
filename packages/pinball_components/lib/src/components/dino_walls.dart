@@ -105,7 +105,7 @@ class _DinoTopWall extends BodyComponent with InitialPosition {
 }
 
 class _DinoTopWallSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _DinoTopWallSpriteComponent()
       : super(
           position: Vector2(22.55, -38.07),
@@ -117,7 +117,7 @@ class _DinoTopWallSpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.dino.topWall.keyName,
       ),
     );
@@ -127,7 +127,7 @@ class _DinoTopWallSpriteComponent extends SpriteComponent
 }
 
 class _DinoTopWallTunnelSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _DinoTopWallTunnelSpriteComponent()
       : super(position: Vector2(23.11, -26.01)) {
     zIndex = ZIndexes.dinoTopWallTunnel;
@@ -137,7 +137,7 @@ class _DinoTopWallTunnelSpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.dino.topWallTunnel.keyName,
       ),
     );
@@ -208,12 +208,13 @@ class _DinoBottomWall extends BodyComponent with InitialPosition, ZIndex {
   }
 }
 
-class _DinoBottomWallSpriteComponent extends SpriteComponent with HasGameRef {
+class _DinoBottomWallSpriteComponent extends SpriteComponent
+    with HasGameReference {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.dino.bottomWall.keyName,
       ),
     );

@@ -91,7 +91,7 @@ class SparkyComputer extends BodyComponent {
 }
 
 class _ComputerBaseSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _ComputerBaseSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -105,7 +105,7 @@ class _ComputerBaseSpriteComponent extends SpriteComponent
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.sparky.computer.base.keyName,
       ),
     );
@@ -115,7 +115,7 @@ class _ComputerBaseSpriteComponent extends SpriteComponent
 }
 
 class _ComputerTopSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _ComputerTopSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -129,7 +129,7 @@ class _ComputerTopSpriteComponent extends SpriteComponent
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.sparky.computer.top.keyName,
       ),
     );
@@ -139,7 +139,7 @@ class _ComputerTopSpriteComponent extends SpriteComponent
 }
 
 class _ComputerGlowSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _ComputerGlowSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -153,7 +153,7 @@ class _ComputerGlowSpriteComponent extends SpriteComponent
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.sparky.computer.glow.keyName,
       ),
     );

@@ -6,7 +6,8 @@ import 'package:pinball_flame/pinball_flame.dart';
 /// {@template rocket_sprite_component}
 /// A [SpriteComponent] for the rocket over [Plunger].
 /// {@endtemplate}
-class RocketSpriteComponent extends SpriteComponent with HasGameRef, ZIndex {
+class RocketSpriteComponent extends SpriteComponent
+    with HasGameReference, ZIndex {
   /// {@macro rocket_sprite_component}
   RocketSpriteComponent() : super(anchor: Anchor.center) {
     zIndex = ZIndexes.rocket;
@@ -16,7 +17,7 @@ class RocketSpriteComponent extends SpriteComponent with HasGameRef, ZIndex {
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.plunger.rocket.keyName,
       ),
     );

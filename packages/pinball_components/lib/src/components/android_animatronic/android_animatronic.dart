@@ -45,7 +45,7 @@ class AndroidAnimatronic extends BodyComponent
 }
 
 class _AndroidAnimatronicSpriteAnimationComponent
-    extends SpriteAnimationComponent with HasGameRef {
+    extends SpriteAnimationComponent with HasGameReference {
   _AndroidAnimatronicSpriteAnimationComponent()
       : super(
           anchor: Anchor.center,
@@ -56,7 +56,7 @@ class _AndroidAnimatronicSpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final spriteSheet = gameRef.images.fromCache(
+    final spriteSheet = game.images.fromCache(
       Assets.images.android.spaceship.animatronic.keyName,
     );
 

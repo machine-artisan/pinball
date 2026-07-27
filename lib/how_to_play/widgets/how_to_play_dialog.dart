@@ -86,7 +86,7 @@ class _HowToPlayDialogState extends State<HowToPlayDialog> {
     final l10n = context.l10n;
 
     return PopScope(
-      onPopInvoked: (_) {
+      onPopInvokedWithResult: (_, __) {
         widget.onDismissCallback.call();
         context
             .read<PinballAudioPlayer>()

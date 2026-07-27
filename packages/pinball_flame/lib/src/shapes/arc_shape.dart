@@ -1,5 +1,6 @@
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:geometry/geometry.dart';
+import 'package:vector_math/vector_math_64.dart' as vm64;
 
 /// {@template arc_shape}
 /// Creates an arc.
@@ -12,14 +13,17 @@ class ArcShape extends ChainShape {
     required this.angle,
     this.rotation = 0,
   }) {
-    createChain(
-      calculateArc(
-        center: center,
-        radius: arcRadius,
-        angle: angle,
-        offsetAngle: rotation,
-      ),
+    // forge2d's [Vector2] (from package:vector_math/vector_math.dart) and
+    // geometry's [Vector2] (from package:vector_math/vector_math_64.dart)
+    // are distinct types, so the arc points must be converted at this
+    // boundary.
+    final points = calculateArc(
+      center: vm64.Vector2(center.x, center.y),
+      radius: arcRadius,
+      angle: angle,
+      offsetAngle: rotation,
     );
+    createChain(points.map((p) => Vector2(p.x, p.y)).toList());
   }
 
   /// The center of the arc.

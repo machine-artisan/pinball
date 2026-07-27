@@ -1,4 +1,5 @@
 import 'package:flame/events.dart';
+import 'package:flame/input.dart';
 import 'package:pinball_components/pinball_components.dart';
 import 'package:pinball_flame/pinball_flame.dart';
 import 'package:pinball_theme/pinball_theme.dart' as theme;

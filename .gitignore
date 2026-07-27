@@ -135,3 +135,6 @@ lib/firebase_options.dart
 
 test/.test_runner.dart
 web/__/firebase/init.js
+
+# Generated localization files
+/lib/l10n/gen/

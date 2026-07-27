@@ -38,7 +38,8 @@ class GoogleRollover extends BodyComponent {
   }
 }
 
-class _RolloverDecalSpriteComponent extends SpriteComponent with HasGameRef {
+class _RolloverDecalSpriteComponent extends SpriteComponent
+    with HasGameReference {
   _RolloverDecalSpriteComponent({required BoardSide side})
       : _side = side,
         super(
@@ -54,7 +55,7 @@ class _RolloverDecalSpriteComponent extends SpriteComponent with HasGameRef {
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         (_side.isLeft)
             ? Assets.images.googleRollover.left.decal.keyName
             : Assets.images.googleRollover.right.decal.keyName,
@@ -66,7 +67,7 @@ class _RolloverDecalSpriteComponent extends SpriteComponent with HasGameRef {
 }
 
 class _PinSpriteAnimationComponent extends SpriteAnimationComponent
-    with HasGameRef {
+    with HasGameReference {
   _PinSpriteAnimationComponent({required BoardSide side})
       : _side = side,
         super(
@@ -82,7 +83,7 @@ class _PinSpriteAnimationComponent extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final spriteSheet = gameRef.images.fromCache(
+    final spriteSheet = game.images.fromCache(
       _side.isLeft
           ? Assets.images.googleRollover.left.pin.keyName
           : Assets.images.googleRollover.right.pin.keyName,

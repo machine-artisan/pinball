@@ -14,7 +14,7 @@ import 'package:pinball_flame/pinball_flame.dart';
 /// The behavior removes itself after the duration.
 /// {@endtemplate}
 class ScoringBehavior extends Component
-    with HasGameRef, FlameBlocReader<GameBloc, GameState> {
+    with HasGameReference, FlameBlocReader<GameBloc, GameState> {
   /// {@macro scoring_behavior}
   ScoringBehavior({
     required Points points,
@@ -43,7 +43,7 @@ class ScoringBehavior extends Component
   Future<void> onLoad() async {
     await super.onLoad();
     bloc.add(Scored(points: _points.value));
-    final canvas = gameRef.descendants().whereType<ZCanvasComponent>().single;
+    final canvas = game.descendants().whereType<ZCanvasComponent>().single;
     await canvas.add(
       ScoreComponent(
         points: _points,

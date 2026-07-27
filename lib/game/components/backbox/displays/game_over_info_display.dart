@@ -51,7 +51,7 @@ final _descriptionTextPaint = TextPaint(
 /// {@template game_over_info_display}
 /// Display with links to share your score or go to the IO webpage.
 /// {@endtemplate}
-class GameOverInfoDisplay extends Component with HasGameRef {
+class GameOverInfoDisplay extends Component with HasGameReference {
   /// {@macro game_over_info_display}
   GameOverInfoDisplay({
     OnShareTap? onShare,
@@ -66,11 +66,11 @@ class GameOverInfoDisplay extends Component with HasGameRef {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    gameRef.overlays.add(PinballGame.replayButtonOverlay);
+    game.overlays.add(PinballGame.replayButtonOverlay);
   }
 }
 
-class _InstructionsComponent extends PositionComponent with HasGameRef {
+class _InstructionsComponent extends PositionComponent with HasGameReference {
   _InstructionsComponent({
     OnShareTap? onShare,
   }) : super(
@@ -86,7 +86,7 @@ class _InstructionsComponent extends PositionComponent with HasGameRef {
         );
 }
 
-class _TitleComponent extends PositionComponent with HasGameRef {
+class _TitleComponent extends PositionComponent with HasGameReference {
   _TitleComponent()
       : super(
           anchor: Anchor.center,
@@ -99,7 +99,7 @@ class _TitleComponent extends PositionComponent with HasGameRef {
         );
 }
 
-class _ShareScoreTextComponent extends TextComponent with HasGameRef {
+class _ShareScoreTextComponent extends TextComponent with HasGameReference {
   _ShareScoreTextComponent()
       : super(
           anchor: Anchor.center,
@@ -114,7 +114,8 @@ class _ShareScoreTextComponent extends TextComponent with HasGameRef {
   }
 }
 
-class _ChallengeFriendsTextComponent extends TextComponent with HasGameRef {
+class _ChallengeFriendsTextComponent extends TextComponent
+    with HasGameReference {
   _ChallengeFriendsTextComponent()
       : super(
           anchor: Anchor.center,
@@ -129,7 +130,8 @@ class _ChallengeFriendsTextComponent extends TextComponent with HasGameRef {
   }
 }
 
-class _TitleBackgroundSpriteComponent extends SpriteComponent with HasGameRef {
+class _TitleBackgroundSpriteComponent extends SpriteComponent
+    with HasGameReference {
   _TitleBackgroundSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -140,7 +142,7 @@ class _TitleBackgroundSpriteComponent extends SpriteComponent with HasGameRef {
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images
+      game.images
           .fromCache(Assets.images.backbox.displayTitleDecoration.keyName),
     );
     this.sprite = sprite;
@@ -148,7 +150,7 @@ class _TitleBackgroundSpriteComponent extends SpriteComponent with HasGameRef {
   }
 }
 
-class _LinksComponent extends PositionComponent with HasGameRef {
+class _LinksComponent extends PositionComponent with HasGameReference {
   _LinksComponent({
     OnShareTap? onShare,
   }) : super(
@@ -164,7 +166,8 @@ class _LinksComponent extends PositionComponent with HasGameRef {
 /// {@template share_link_component}
 /// Link button to navigate to sharing score display.
 /// {@endtemplate}
-class ShareLinkComponent extends TextComponent with HasGameRef, TapCallbacks {
+class ShareLinkComponent extends TextComponent
+    with HasGameReference, TapCallbacks {
   /// {@macro share_link_component}
   ShareLinkComponent({
     OnShareTap? onTap,
@@ -203,7 +206,7 @@ class ShareLinkComponent extends TextComponent with HasGameRef, TapCallbacks {
 /// Link button to navigate to Google I/O site.
 /// {@endtemplate}
 class GoogleIOLinkComponent extends TextComponent
-    with HasGameRef, TapCallbacks {
+    with HasGameReference, TapCallbacks {
   /// {@macro google_io_link_component}
   GoogleIOLinkComponent()
       : super(
@@ -234,7 +237,7 @@ class GoogleIOLinkComponent extends TextComponent
   }
 }
 
-class _DescriptionComponent extends PositionComponent with HasGameRef {
+class _DescriptionComponent extends PositionComponent with HasGameReference {
   _DescriptionComponent()
       : super(
           anchor: Anchor.center,
@@ -247,7 +250,7 @@ class _DescriptionComponent extends PositionComponent with HasGameRef {
         );
 }
 
-class _LearnMoreTextComponent extends TextComponent with HasGameRef {
+class _LearnMoreTextComponent extends TextComponent with HasGameReference {
   _LearnMoreTextComponent()
       : super(
           anchor: Anchor.center,
@@ -262,7 +265,7 @@ class _LearnMoreTextComponent extends TextComponent with HasGameRef {
   }
 }
 
-class _FirebaseTextComponent extends TextComponent with HasGameRef {
+class _FirebaseTextComponent extends TextComponent with HasGameReference {
   _FirebaseTextComponent()
       : super(
           anchor: Anchor.center,
@@ -282,7 +285,7 @@ class _FirebaseTextComponent extends TextComponent with HasGameRef {
 /// {@endtemplate}
 @visibleForTesting
 class OpenSourceTextComponent extends TextComponent
-    with HasGameRef, TapCallbacks {
+    with HasGameReference, TapCallbacks {
   /// {@macro open_source_link_component}
   OpenSourceTextComponent()
       : super(

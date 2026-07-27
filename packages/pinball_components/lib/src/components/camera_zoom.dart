@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 /// {@template camera_zoom}
 /// Applies zoom to the camera of the game where this is added to
 /// {@endtemplate}
-class CameraZoom extends Effect with HasGameRef {
+class CameraZoom extends Effect with HasGameReference {
   /// {@macro camera_zoom}
   CameraZoom({
     required this.value,
@@ -28,14 +28,14 @@ class CameraZoom extends Effect with HasGameRef {
   @override
   Future<void> onLoad() async {
     _tween = Tween(
-      begin: gameRef.camera.viewfinder.zoom,
+      begin: game.camera.viewfinder.zoom,
       end: value,
     );
   }
 
   @override
   void apply(double progress) {
-    gameRef.camera.viewfinder.zoom = _tween.transform(progress);
+    game.camera.viewfinder.zoom = _tween.transform(progress);
   }
 
   /// Returns a [Future] that completes once the zoom is finished

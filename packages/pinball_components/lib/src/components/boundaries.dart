@@ -64,7 +64,8 @@ class _BottomBoundary extends BodyComponent with InitialPosition, ZIndex {
   }
 }
 
-class _BottomBoundarySpriteComponent extends SpriteComponent with HasGameRef {
+class _BottomBoundarySpriteComponent extends SpriteComponent
+    with HasGameReference {
   _BottomBoundarySpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -75,7 +76,7 @@ class _BottomBoundarySpriteComponent extends SpriteComponent with HasGameRef {
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.boundary.bottom.keyName,
       ),
     );
@@ -172,7 +173,8 @@ class _OuterBoundary extends BodyComponent with InitialPosition, ZIndex {
   }
 }
 
-class _OuterBoundarySpriteComponent extends SpriteComponent with HasGameRef {
+class _OuterBoundarySpriteComponent extends SpriteComponent
+    with HasGameReference {
   _OuterBoundarySpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -183,7 +185,7 @@ class _OuterBoundarySpriteComponent extends SpriteComponent with HasGameRef {
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.boundary.outer.keyName,
       ),
     );
@@ -193,7 +195,7 @@ class _OuterBoundarySpriteComponent extends SpriteComponent with HasGameRef {
 }
 
 class _OuterBottomBoundarySpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _OuterBottomBoundarySpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -206,7 +208,7 @@ class _OuterBottomBoundarySpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.boundary.outerBottom.keyName,
       ),
     );

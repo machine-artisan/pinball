@@ -6,7 +6,7 @@ import 'package:pinball_flame/pinball_flame.dart';
 /// Animated Sparky that sits on top of the [SparkyComputer].
 /// {@endtemplate}
 class SparkyAnimatronic extends SpriteAnimationComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   /// {@macro sparky_animatronic}
   SparkyAnimatronic({Iterable<Component>? children})
       : super(
@@ -21,7 +21,7 @@ class SparkyAnimatronic extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final spriteSheet = gameRef.images.fromCache(
+    final spriteSheet = game.images.fromCache(
       Assets.images.sparky.animatronic.keyName,
     );
 

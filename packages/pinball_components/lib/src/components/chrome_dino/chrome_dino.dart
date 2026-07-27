@@ -137,7 +137,8 @@ class ChromeDino extends BodyComponent
   }
 }
 
-class _ChromeDinoMouthSprite extends SpriteAnimationComponent with HasGameRef {
+class _ChromeDinoMouthSprite extends SpriteAnimationComponent
+    with HasGameReference {
   _ChromeDinoMouthSprite()
       : super(
           anchor: Anchor(Anchor.center.x + 0.47, Anchor.center.y - 0.29),
@@ -147,7 +148,7 @@ class _ChromeDinoMouthSprite extends SpriteAnimationComponent with HasGameRef {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    final image = gameRef.images.fromCache(
+    final image = game.images.fromCache(
       Assets.images.dino.animatronic.mouth.keyName,
     );
 
@@ -169,7 +170,8 @@ class _ChromeDinoMouthSprite extends SpriteAnimationComponent with HasGameRef {
   }
 }
 
-class _ChromeDinoHeadSprite extends SpriteAnimationComponent with HasGameRef {
+class _ChromeDinoHeadSprite extends SpriteAnimationComponent
+    with HasGameReference {
   _ChromeDinoHeadSprite()
       : super(
           anchor: Anchor(Anchor.center.x + 0.47, Anchor.center.y - 0.29),
@@ -179,7 +181,7 @@ class _ChromeDinoHeadSprite extends SpriteAnimationComponent with HasGameRef {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    final image = gameRef.images.fromCache(
+    final image = game.images.fromCache(
       Assets.images.dino.animatronic.head.keyName,
     );
 

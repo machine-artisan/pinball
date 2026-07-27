@@ -34,7 +34,7 @@ class BallTurboChargingBehavior extends TimerComponent with ParentIsA<Ball> {
 }
 
 class _TurboChargeSpriteAnimationComponent extends SpriteAnimationComponent
-    with HasGameRef, ZIndex, ParentIsA<Ball> {
+    with HasGameReference, ZIndex, ParentIsA<Ball> {
   _TurboChargeSpriteAnimationComponent()
       : super(
           anchor: const Anchor(0.53, 0.72),
@@ -57,7 +57,7 @@ class _TurboChargeSpriteAnimationComponent extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final spriteSheet = gameRef.images.fromCache(
+    final spriteSheet = game.images.fromCache(
       Assets.images.ball.flameEffect.keyName,
     );
 

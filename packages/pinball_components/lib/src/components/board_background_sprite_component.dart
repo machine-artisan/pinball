@@ -3,7 +3,7 @@ import 'package:pinball_components/pinball_components.dart';
 import 'package:pinball_flame/pinball_flame.dart';
 
 class BoardBackgroundSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   BoardBackgroundSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -17,7 +17,7 @@ class BoardBackgroundSpriteComponent extends SpriteComponent
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.boardBackground.keyName,
       ),
     );

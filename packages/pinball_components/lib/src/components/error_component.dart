@@ -24,7 +24,7 @@ final _labelTextPaint = TextPaint(
 /// {@template error_component}
 /// A plain visual component used to show errors for the user.
 /// {@endtemplate}
-class ErrorComponent extends SpriteComponent with HasGameRef {
+class ErrorComponent extends SpriteComponent with HasGameReference {
   /// {@macro error_component}
   ErrorComponent({required this.label, Vector2? position})
       : _textPaint = _labelTextPaint,
@@ -66,7 +66,7 @@ class ErrorComponent extends SpriteComponent with HasGameRef {
   @override
   Future<void> onLoad() async {
     anchor = Anchor.center;
-    final sprite = await gameRef.loadSprite(
+    final sprite = await game.loadSprite(
       Assets.images.errorBackground.keyName,
     );
 

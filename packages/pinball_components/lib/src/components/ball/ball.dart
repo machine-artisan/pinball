@@ -93,7 +93,7 @@ class Ball extends BodyComponent with Layered, InitialPosition, ZIndex {
 /// {@endtemplate}
 @visibleForTesting
 class BallSpriteComponent extends SpriteComponent
-    with HasGameRef, FlameBlocListenable<BallCubit, BallState> {
+    with HasGameReference, FlameBlocListenable<BallCubit, BallState> {
   /// {@macro ball_sprite_component}
   BallSpriteComponent({required String? assetPath})
       : _assetPath = assetPath,
@@ -104,7 +104,7 @@ class BallSpriteComponent extends SpriteComponent
   @override
   void onNewState(BallState state) {
     sprite = Sprite(
-      gameRef.images.fromCache(state.characterTheme.ball.keyName),
+      game.images.fromCache(state.characterTheme.ball.keyName),
     );
   }
 
@@ -112,7 +112,7 @@ class BallSpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images
+      game.images
           .fromCache(_assetPath ?? theme.Assets.images.dash.ball.keyName),
     );
     this.sprite = sprite;

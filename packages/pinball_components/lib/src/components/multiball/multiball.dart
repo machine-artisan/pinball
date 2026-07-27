@@ -94,7 +94,7 @@ class Multiball extends Component {
 @visibleForTesting
 class MultiballSpriteGroupComponent
     extends SpriteGroupComponent<MultiballLightState>
-    with HasGameRef, ParentIsA<Multiball> {
+    with HasGameReference, ParentIsA<Multiball> {
   /// {@macro multiball_sprite_group_component}
   MultiballSpriteGroupComponent({
     required Vector2 position,
@@ -121,10 +121,10 @@ class MultiballSpriteGroupComponent
 
     final sprites = {
       MultiballLightState.lit: Sprite(
-        gameRef.images.fromCache(_litAssetPath),
+        game.images.fromCache(_litAssetPath),
       ),
       MultiballLightState.dimmed:
-          Sprite(gameRef.images.fromCache(_dimmedAssetPath)),
+          Sprite(game.images.fromCache(_dimmedAssetPath)),
     };
     this.sprites = sprites;
     size = sprites[current]!.originalSize / 10;

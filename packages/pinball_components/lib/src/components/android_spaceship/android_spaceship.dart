@@ -72,7 +72,7 @@ class _SpaceshipSaucerShape extends ChainShape {
 }
 
 class _SpaceshipSaucerSpriteAnimationComponent extends SpriteAnimationComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _SpaceshipSaucerSpriteAnimationComponent()
       : super(
           anchor: Anchor.center,
@@ -84,7 +84,7 @@ class _SpaceshipSaucerSpriteAnimationComponent extends SpriteAnimationComponent
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final spriteSheet = gameRef.images.fromCache(
+    final spriteSheet = game.images.fromCache(
       Assets.images.android.spaceship.saucer.keyName,
     );
 
@@ -109,7 +109,7 @@ class _SpaceshipSaucerSpriteAnimationComponent extends SpriteAnimationComponent
 }
 
 class _LightBeamSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _LightBeamSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -121,7 +121,7 @@ class _LightBeamSpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.android.spaceship.lightBeam.keyName,
       ),
     );

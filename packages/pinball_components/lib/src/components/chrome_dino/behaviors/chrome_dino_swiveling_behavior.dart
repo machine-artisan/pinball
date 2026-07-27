@@ -19,6 +19,8 @@ class ChromeDinoSwivelingBehavior extends TimerComponent
 
   @override
   Future<void> onLoad() async {
+    await super.onLoad();
+
     final anchor = _ChromeDinoAnchor()
       ..initialPosition = parent.initialPosition + Vector2(9, -4);
     await add(anchor);

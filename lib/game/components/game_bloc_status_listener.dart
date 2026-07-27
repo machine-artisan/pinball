@@ -8,7 +8,7 @@ import 'package:pinball_flame/pinball_flame.dart';
 
 /// Listens to the [GameBloc] and updates the game accordingly.
 class GameBlocStatusListener extends Component
-    with FlameBlocListenable<GameBloc, GameState>, HasGameRef {
+    with FlameBlocListenable<GameBloc, GameState>, HasGameReference {
   @override
   bool listenWhen(GameState? previousState, GameState newState) {
     return previousState?.status != newState.status;
@@ -22,30 +22,24 @@ class GameBlocStatusListener extends Component
       case GameStatus.playing:
         readProvider<PinballAudioPlayer>().play(PinballAudio.backgroundMusic);
         _resetBonuses();
-        gameRef
-            .descendants()
-            .whereType<Flipper>()
-            .forEach(_addFlipperBehaviors);
-        gameRef
-            .descendants()
-            .whereType<Plunger>()
-            .forEach(_addPlungerBehaviors);
-        gameRef.overlays.remove(PinballGame.playButtonOverlay);
-        gameRef.overlays.remove(PinballGame.replayButtonOverlay);
+        game.descendants().whereType<Flipper>().forEach(_addFlipperBehaviors);
+        game.descendants().whereType<Plunger>().forEach(_addPlungerBehaviors);
+        game.overlays.remove(PinballGame.playButtonOverlay);
+        game.overlays.remove(PinballGame.replayButtonOverlay);
         break;
       case GameStatus.gameOver:
         readProvider<PinballAudioPlayer>().play(PinballAudio.gameOverVoiceOver);
-        gameRef.descendants().whereType<Backbox>().first.requestInitials(
+        game.descendants().whereType<Backbox>().first.requestInitials(
               score: state.displayScore,
               character: readBloc<CharacterThemeCubit, CharacterThemeState>()
                   .state
                   .characterTheme,
             );
-        gameRef
+        game
             .descendants()
             .whereType<Flipper>()
             .forEach(_removeFlipperBehaviors);
-        gameRef
+        game
             .descendants()
             .whereType<Plunger>()
             .forEach(_removePlungerBehaviors);
@@ -54,19 +48,19 @@ class GameBlocStatusListener extends Component
   }
 
   void _resetBonuses() {
-    gameRef
+    game
         .descendants()
         .whereType<FlameBlocProvider<GoogleWordCubit, GoogleWordState>>()
         .single
         .bloc
         .onReset();
-    gameRef
+    game
         .descendants()
         .whereType<FlameBlocProvider<DashBumpersCubit, DashBumpersState>>()
         .single
         .bloc
         .onReset();
-    gameRef
+    game
         .descendants()
         .whereType<FlameBlocProvider<SignpostCubit, SignpostState>>()
         .single

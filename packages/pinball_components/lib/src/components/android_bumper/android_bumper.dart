@@ -128,7 +128,7 @@ class AndroidBumper extends BodyComponent with InitialPosition, ZIndex {
 
 class _AndroidBumperSpriteGroupComponent
     extends SpriteGroupComponent<AndroidBumperState>
-    with HasGameRef, ParentIsA<AndroidBumper> {
+    with HasGameReference, ParentIsA<AndroidBumper> {
   _AndroidBumperSpriteGroupComponent({
     required String litAssetPath,
     required String dimmedAssetPath,
@@ -152,10 +152,10 @@ class _AndroidBumperSpriteGroupComponent
 
     final sprites = {
       AndroidBumperState.lit: Sprite(
-        gameRef.images.fromCache(_litAssetPath),
+        game.images.fromCache(_litAssetPath),
       ),
       AndroidBumperState.dimmed:
-          Sprite(gameRef.images.fromCache(_dimmedAssetPath)),
+          Sprite(game.images.fromCache(_dimmedAssetPath)),
     };
     this.sprites = sprites;
     size = sprites[current]!.originalSize / 10;

@@ -86,7 +86,7 @@ class Plunger extends BodyComponent with InitialPosition, Layered, ZIndex {
 
 class _PlungerSpriteAnimationGroupComponent
     extends SpriteAnimationGroupComponent<PlungerState>
-    with HasGameRef, FlameBlocListenable<PlungerCubit, PlungerState> {
+    with HasGameReference, FlameBlocListenable<PlungerCubit, PlungerState> {
   _PlungerSpriteAnimationGroupComponent()
       : super(
           anchor: Anchor.center,
@@ -108,7 +108,7 @@ class _PlungerSpriteAnimationGroupComponent
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    final spriteSheet = gameRef.images.fromCache(
+    final spriteSheet = game.images.fromCache(
       Assets.images.plunger.plunger.keyName,
     );
     const amountPerRow = 20;

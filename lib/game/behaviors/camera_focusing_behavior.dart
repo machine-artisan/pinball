@@ -22,7 +22,7 @@ class _FocusData {
 
 /// Changes the game focus when the [GameBloc] status changes.
 class CameraFocusingBehavior extends Component
-    with FlameBlocListenable<GameBloc, GameState>, HasGameRef {
+    with FlameBlocListenable<GameBloc, GameState>, HasGameReference {
   final Map<GameStatus, _FocusData> _foci = {};
 
   GameStatus? _activeFocus;
@@ -68,14 +68,14 @@ class CameraFocusingBehavior extends Component
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    onGameResize(gameRef.camera.viewport.size);
+    onGameResize(game.camera.viewport.size);
     _snap(GameStatus.waiting);
   }
 
   void _snap(GameStatus focusKey) {
     final focusData = _foci[_activeFocus = focusKey]!;
-    gameRef.camera.moveTo(focusData.position, speed: 100);
-    gameRef.camera.viewfinder.zoom = focusData.zoom;
+    game.camera.moveTo(focusData.position, speed: 100);
+    game.camera.viewfinder.zoom = focusData.zoom;
   }
 
   void _zoomTo(GameStatus focusKey) {
@@ -83,7 +83,7 @@ class CameraFocusingBehavior extends Component
 
     final zoom = CameraZoom(value: focusData.zoom);
     zoom.completed.then((_) {
-      gameRef.camera.moveTo(focusData.position);
+      game.camera.moveTo(focusData.position);
     });
     add(zoom);
   }

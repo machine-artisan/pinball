@@ -113,7 +113,7 @@ class _SpaceshipRampBackground extends BodyComponent
 }
 
 class _SpaceshipRampBackgroundRailingSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _SpaceshipRampBackgroundRailingSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -126,7 +126,7 @@ class _SpaceshipRampBackgroundRailingSpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.android.ramp.railingBackground.keyName,
       ),
     );
@@ -136,7 +136,7 @@ class _SpaceshipRampBackgroundRailingSpriteComponent extends SpriteComponent
 }
 
 class _SpaceshipRampBackgroundRampSpriteComponent extends SpriteComponent
-    with HasGameRef {
+    with HasGameReference {
   _SpaceshipRampBackgroundRampSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -147,7 +147,7 @@ class _SpaceshipRampBackgroundRampSpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.android.ramp.main.keyName,
       ),
     );
@@ -165,7 +165,7 @@ class _SpaceshipRampBackgroundRampSpriteComponent extends SpriteComponent
 class SpaceshipRampArrowSpriteComponent
     extends SpriteGroupComponent<ArrowLightState>
     with
-        HasGameRef,
+        HasGameReference,
         ZIndex,
         FlameBlocListenable<SpaceshipRampCubit, SpaceshipRampState> {
   /// {@macro spaceship_ramp_arrow_sprite_component}
@@ -197,7 +197,7 @@ class SpaceshipRampArrowSpriteComponent
     this.sprites = sprites;
     for (final spriteState in ArrowLightState.values) {
       sprites[spriteState] = Sprite(
-        gameRef.images.fromCache(spriteState.path),
+        game.images.fromCache(spriteState.path),
       );
     }
 
@@ -332,14 +332,14 @@ class SpaceshipRampBoardOpening extends BodyComponent
 }
 
 class _SpaceshipRampBoardOpeningSpriteComponent extends SpriteComponent
-    with HasGameRef {
+    with HasGameReference {
   _SpaceshipRampBoardOpeningSpriteComponent() : super(anchor: Anchor.center);
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.android.ramp.boardOpening.keyName,
       ),
     );
@@ -398,7 +398,7 @@ class _SpaceshipRampForegroundRailing extends BodyComponent
 }
 
 class _SpaceshipRampForegroundRailingSpriteComponent extends SpriteComponent
-    with HasGameRef {
+    with HasGameReference {
   _SpaceshipRampForegroundRailingSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -409,7 +409,7 @@ class _SpaceshipRampForegroundRailingSpriteComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.android.ramp.railingForeground.keyName,
       ),
     );

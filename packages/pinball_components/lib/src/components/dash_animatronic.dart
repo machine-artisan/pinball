@@ -4,7 +4,7 @@ import 'package:pinball_components/pinball_components.dart';
 /// {@template dash_animatronic}
 /// Animated Dash that sits on top of the [DashBumper.main].
 /// {@endtemplate}
-class DashAnimatronic extends SpriteAnimationComponent with HasGameRef {
+class DashAnimatronic extends SpriteAnimationComponent with HasGameReference {
   /// {@macro dash_animatronic}
   DashAnimatronic({Iterable<Component>? children})
       : super(
@@ -17,7 +17,7 @@ class DashAnimatronic extends SpriteAnimationComponent with HasGameRef {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    final spriteSheet = gameRef.images.fromCache(
+    final spriteSheet = game.images.fromCache(
       Assets.images.dash.animatronic.keyName,
     );
 

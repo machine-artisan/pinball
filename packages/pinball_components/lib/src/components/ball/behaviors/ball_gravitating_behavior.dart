@@ -6,11 +6,11 @@ import 'package:pinball_components/pinball_components.dart';
 
 /// Scales the ball's gravity according to its position on the board.
 class BallGravitatingBehavior extends Component
-    with ParentIsA<Ball>, HasGameRef<Forge2DGame> {
+    with ParentIsA<Ball>, HasGameReference<Forge2DGame> {
   @override
   void update(double dt) {
     super.update(dt);
-    final defaultGravity = gameRef.world.gravity.y;
+    final defaultGravity = game.world.gravity.y;
 
     final maxXDeviationFromCenter = BoardDimensions.bounds.width / 2;
     const maxXGravityPercentage =

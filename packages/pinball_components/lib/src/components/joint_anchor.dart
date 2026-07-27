@@ -5,8 +5,8 @@ import 'package:pinball_components/pinball_components.dart';
 /// Non visual [BodyComponent] used to hold a [BodyType.dynamic] in [Joint]s
 /// with this [BodyType.static].
 ///
-/// It is recommended to use [JointAnchor.body.position] to position the anchor
-/// point when initializing a [JointDef].
+/// It is recommended to use [JointAnchor.body]'s position to position the
+/// anchor point when initializing a [JointDef].
 ///
 /// ```dart
 /// initialize(

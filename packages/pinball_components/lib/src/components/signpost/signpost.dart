@@ -50,7 +50,7 @@ class Signpost extends BodyComponent with InitialPosition {
 }
 
 class _SignpostSpriteComponent extends SpriteGroupComponent<SignpostState>
-    with HasGameRef, FlameBlocListenable<SignpostCubit, SignpostState> {
+    with HasGameReference, FlameBlocListenable<SignpostCubit, SignpostState> {
   _SignpostSpriteComponent()
       : super(
           anchor: Anchor.bottomCenter,
@@ -67,7 +67,7 @@ class _SignpostSpriteComponent extends SpriteGroupComponent<SignpostState>
     this.sprites = sprites;
     for (final spriteState in SignpostState.values) {
       sprites[spriteState] = Sprite(
-        gameRef.images.fromCache(spriteState.path),
+        game.images.fromCache(spriteState.path),
       );
     }
 

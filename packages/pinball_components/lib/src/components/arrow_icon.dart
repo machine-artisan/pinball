@@ -15,7 +15,7 @@ enum ArrowIconDirection {
 /// {@template arrow_icon}
 /// A [SpriteComponent] that renders a simple arrow icon.
 /// {@endtemplate}
-class ArrowIcon extends SpriteComponent with TapCallbacks, HasGameRef {
+class ArrowIcon extends SpriteComponent with TapCallbacks, HasGameReference {
   /// {@macro arrow_icon}
   ArrowIcon({
     required Vector2 position,
@@ -30,7 +30,7 @@ class ArrowIcon extends SpriteComponent with TapCallbacks, HasGameRef {
   Future<void> onLoad() async {
     anchor = Anchor.center;
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         direction == ArrowIconDirection.left
             ? Assets.images.displayArrows.arrowLeft.keyName
             : Assets.images.displayArrows.arrowRight.keyName,

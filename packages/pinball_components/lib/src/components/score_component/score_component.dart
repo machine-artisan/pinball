@@ -18,7 +18,7 @@ enum Points {
 /// A [ScoreComponent] that spawns at a given [position] with a moving
 /// animation.
 /// {@endtemplate}
-class ScoreComponent extends SpriteComponent with HasGameRef, ZIndex {
+class ScoreComponent extends SpriteComponent with HasGameReference, ZIndex {
   /// {@macro score_component}
   ScoreComponent({
     required this.points,
@@ -57,7 +57,7 @@ class ScoreComponent extends SpriteComponent with HasGameRef, ZIndex {
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(points.asset),
+      game.images.fromCache(points.asset),
     );
     this.sprite = sprite;
     size = sprite.originalSize / 55;

@@ -45,7 +45,7 @@ String _rank(int number) {
 /// {@template leaderboard_display}
 /// Component that builds the leaderboard list of the Backbox.
 /// {@endtemplate}
-class LeaderboardDisplay extends PositionComponent with HasGameRef {
+class LeaderboardDisplay extends PositionComponent with HasGameReference {
   /// {@macro leaderboard_display}
   LeaderboardDisplay({required List<LeaderboardEntryData> entries})
       : _entries = entries;
@@ -151,7 +151,7 @@ class LeaderboardDisplay extends PositionComponent with HasGameRef {
   }
 }
 
-class _RankingPage extends PositionComponent with HasGameRef {
+class _RankingPage extends PositionComponent with HasGameReference {
   _RankingPage({
     required this.ranking,
     required this.offset,
@@ -179,7 +179,7 @@ class _RankingPage extends PositionComponent with HasGameRef {
               anchor: Anchor.center,
             ),
             SpriteComponent.fromImage(
-              gameRef.images.fromCache(
+              game.images.fromCache(
                 ranking[i].character.toTheme.leaderboardIcon.keyName,
               ),
               anchor: Anchor.center,

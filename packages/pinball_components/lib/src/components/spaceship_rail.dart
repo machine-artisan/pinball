@@ -103,7 +103,8 @@ class _SpaceshipRail extends BodyComponent with Layered, ZIndex {
   }
 }
 
-class _SpaceshipRailSpriteComponent extends SpriteComponent with HasGameRef {
+class _SpaceshipRailSpriteComponent extends SpriteComponent
+    with HasGameReference {
   _SpaceshipRailSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -115,7 +116,7 @@ class _SpaceshipRailSpriteComponent extends SpriteComponent with HasGameRef {
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.android.rail.main.keyName,
       ),
     );
@@ -125,7 +126,7 @@ class _SpaceshipRailSpriteComponent extends SpriteComponent with HasGameRef {
 }
 
 class _SpaceshipRailExitSpriteComponent extends SpriteComponent
-    with HasGameRef, ZIndex {
+    with HasGameReference, ZIndex {
   _SpaceshipRailExitSpriteComponent()
       : super(
           anchor: Anchor.center,
@@ -139,7 +140,7 @@ class _SpaceshipRailExitSpriteComponent extends SpriteComponent
     await super.onLoad();
 
     final sprite = Sprite(
-      gameRef.images.fromCache(
+      game.images.fromCache(
         Assets.images.android.rail.exit.keyName,
       ),
     );

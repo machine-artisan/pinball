@@ -24,7 +24,7 @@ final _descriptionTextPaint = TextPaint(
 /// {@template share_display}
 /// Display that allows users to share their score to social networks.
 /// {@endtemplate}
-class ShareDisplay extends Component with HasGameRef {
+class ShareDisplay extends Component with HasGameReference {
   /// {@macro share_display}
   ShareDisplay({
     OnSocialShareTap? onShare,
@@ -37,7 +37,8 @@ class ShareDisplay extends Component with HasGameRef {
         );
 }
 
-class _ShareInstructionsComponent extends PositionComponent with HasGameRef {
+class _ShareInstructionsComponent extends PositionComponent
+    with HasGameReference {
   _ShareInstructionsComponent({
     OnSocialShareTap? onShare,
   }) : super(
@@ -52,7 +53,7 @@ class _ShareInstructionsComponent extends PositionComponent with HasGameRef {
         );
 }
 
-class _DescriptionComponent extends PositionComponent with HasGameRef {
+class _DescriptionComponent extends PositionComponent with HasGameReference {
   _DescriptionComponent()
       : super(
           anchor: Anchor.center,
@@ -65,7 +66,7 @@ class _DescriptionComponent extends PositionComponent with HasGameRef {
         );
 }
 
-class _LetEveryoneTextComponent extends TextComponent with HasGameRef {
+class _LetEveryoneTextComponent extends TextComponent with HasGameReference {
   _LetEveryoneTextComponent()
       : super(
           anchor: Anchor.center,
@@ -80,7 +81,8 @@ class _LetEveryoneTextComponent extends TextComponent with HasGameRef {
   }
 }
 
-class _SharingYourScoreTextComponent extends TextComponent with HasGameRef {
+class _SharingYourScoreTextComponent extends TextComponent
+    with HasGameReference {
   _SharingYourScoreTextComponent()
       : super(
           anchor: Anchor.center,
@@ -95,7 +97,7 @@ class _SharingYourScoreTextComponent extends TextComponent with HasGameRef {
   }
 }
 
-class _SocialMediaTextComponent extends TextComponent with HasGameRef {
+class _SocialMediaTextComponent extends TextComponent with HasGameReference {
   _SocialMediaTextComponent()
       : super(
           anchor: Anchor.center,
@@ -110,7 +112,7 @@ class _SocialMediaTextComponent extends TextComponent with HasGameRef {
   }
 }
 
-class _SocialNetworksComponent extends PositionComponent with HasGameRef {
+class _SocialNetworksComponent extends PositionComponent with HasGameReference {
   _SocialNetworksComponent({
     OnSocialShareTap? onShare,
   }) : super(
@@ -127,7 +129,7 @@ class _SocialNetworksComponent extends PositionComponent with HasGameRef {
 /// Button for sharing on Facebook.
 /// {@endtemplate}
 class FacebookButtonComponent extends SpriteComponent
-    with HasGameRef, TapCallbacks {
+    with HasGameReference, TapCallbacks {
   /// {@macro facebook_button_component}
   FacebookButtonComponent({
     OnSocialShareTap? onTap,
@@ -149,7 +151,7 @@ class FacebookButtonComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(Assets.images.backbox.button.facebook.keyName),
+      game.images.fromCache(Assets.images.backbox.button.facebook.keyName),
     );
     this.sprite = sprite;
     size = sprite.originalSize / 25;
@@ -160,7 +162,7 @@ class FacebookButtonComponent extends SpriteComponent
 /// Button for sharing on Twitter.
 /// {@endtemplate}
 class TwitterButtonComponent extends SpriteComponent
-    with HasGameRef, TapCallbacks {
+    with HasGameReference, TapCallbacks {
   /// {@macro twitter_button_component}
   TwitterButtonComponent({
     OnSocialShareTap? onTap,
@@ -182,7 +184,7 @@ class TwitterButtonComponent extends SpriteComponent
   Future<void> onLoad() async {
     await super.onLoad();
     final sprite = Sprite(
-      gameRef.images.fromCache(Assets.images.backbox.button.twitter.keyName),
+      game.images.fromCache(Assets.images.backbox.button.twitter.keyName),
     );
     this.sprite = sprite;
     size = sprite.originalSize / 25;

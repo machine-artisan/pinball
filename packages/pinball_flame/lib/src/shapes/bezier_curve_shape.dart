@@ -1,5 +1,6 @@
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:geometry/geometry.dart';
+import 'package:vector_math/vector_math_64.dart' as vm64;
 
 /// {@template bezier_curve_shape}
 /// Creates a bezier curve.
@@ -9,7 +10,13 @@ class BezierCurveShape extends ChainShape {
   BezierCurveShape({
     required this.controlPoints,
   }) {
-    createChain(calculateBezierCurve(controlPoints: controlPoints));
+    // forge2d's [Vector2] and geometry's [Vector2] are distinct types (see
+    // arc_shape.dart), so the control points must be converted at this
+    // boundary.
+    final vm64ControlPoints =
+        controlPoints.map((p) => vm64.Vector2(p.x, p.y)).toList();
+    final points = calculateBezierCurve(controlPoints: vm64ControlPoints);
+    createChain(points.map((p) => Vector2(p.x, p.y)).toList());
   }
 
   /// Specifies the control points of the curve.

@@ -160,7 +160,7 @@ extension on MultiplierValue {
 @visibleForTesting
 class MultiplierSpriteGroupComponent
     extends SpriteGroupComponent<MultiplierSpriteState>
-    with HasGameRef, ParentIsA<Multiplier> {
+    with HasGameReference, ParentIsA<Multiplier> {
   /// {@macro multiplier_sprite_group_component}
   MultiplierSpriteGroupComponent({
     required Vector2 position,
@@ -186,10 +186,9 @@ class MultiplierSpriteGroupComponent
     parent.bloc.stream.listen((state) => current = state.spriteState);
 
     final sprites = {
-      MultiplierSpriteState.lit:
-          Sprite(gameRef.images.fromCache(_litAssetPath)),
+      MultiplierSpriteState.lit: Sprite(game.images.fromCache(_litAssetPath)),
       MultiplierSpriteState.dimmed:
-          Sprite(gameRef.images.fromCache(_dimmedAssetPath)),
+          Sprite(game.images.fromCache(_dimmedAssetPath)),
     };
     this.sprites = sprites;
     size = sprites[current]!.originalSize / 10;

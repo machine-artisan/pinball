@@ -64,7 +64,7 @@ abstract class LineGame extends AssetsGame with PanDetector {
   void onLine(Vector2 line);
 }
 
-class _PreviewLine extends PositionComponent with HasGameRef<LineGame> {
+class _PreviewLine extends PositionComponent with HasGameReference<LineGame> {
   static final _previewLinePaint = Paint()
     ..color = Colors.pink
     ..strokeWidth = 0.2
@@ -76,7 +76,7 @@ class _PreviewLine extends PositionComponent with HasGameRef<LineGame> {
   void update(double dt) {
     super.update(dt);
 
-    lineEnd = gameRef._lineEnd?.clone()?..multiply(Vector2(1, -1));
+    lineEnd = game._lineEnd?.clone()?..multiply(Vector2(1, -1));
   }
 
   @override
