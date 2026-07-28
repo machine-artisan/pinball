@@ -26,9 +26,11 @@ class GameBlocStatusListener extends Component
         game.descendants().whereType<Plunger>().forEach(_addPlungerBehaviors);
         game.overlays.remove(PinballGame.playButtonOverlay);
         game.overlays.remove(PinballGame.replayButtonOverlay);
+        game.overlays.add(PinballGame.launchButtonOverlay);
         break;
       case GameStatus.gameOver:
         readProvider<PinballAudioPlayer>().play(PinballAudio.gameOverVoiceOver);
+        game.overlays.remove(PinballGame.launchButtonOverlay);
         game.descendants().whereType<Backbox>().first.requestInitials(
               score: state.displayScore,
               character: readBloc<CharacterThemeCubit, CharacterThemeState>()

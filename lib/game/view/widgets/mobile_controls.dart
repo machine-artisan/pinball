@@ -24,16 +24,27 @@ class MobileControls extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        MobileDpad(
-          onTapUp: () => game.triggerVirtualKeyUp(LogicalKeyboardKey.arrowUp),
-          onTapDown: () => game.triggerVirtualKeyUp(
-            LogicalKeyboardKey.arrowDown,
-          ),
-          onTapLeft: () => game.triggerVirtualKeyUp(
-            LogicalKeyboardKey.arrowLeft,
-          ),
-          onTapRight: () => game.triggerVirtualKeyUp(
-            LogicalKeyboardKey.arrowRight,
+        // The GameWidget is now pillarboxed to a fixed 9:16 aspect ratio
+        // (see pinball_game_page.dart), which can leave this row less width
+        // than the d-pad wants on short/wide viewports. Flexible+FittedBox
+        // shrinks it to fit instead of overflowing, without changing the
+        // spaceEvenly layout on viewports with enough room.
+        Flexible(
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: MobileDpad(
+              onTapUp: () =>
+                  game.triggerVirtualKeyUp(LogicalKeyboardKey.arrowUp),
+              onTapDown: () => game.triggerVirtualKeyUp(
+                LogicalKeyboardKey.arrowDown,
+              ),
+              onTapLeft: () => game.triggerVirtualKeyUp(
+                LogicalKeyboardKey.arrowLeft,
+              ),
+              onTapRight: () => game.triggerVirtualKeyUp(
+                LogicalKeyboardKey.arrowRight,
+              ),
+            ),
           ),
         ),
         PinballButton(

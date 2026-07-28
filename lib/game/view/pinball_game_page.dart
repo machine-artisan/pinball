@@ -89,37 +89,60 @@ class PinballGameLoadedView extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            child: MouseRegion(
-              onHover: (_) {
-                if (!game.focusNode.hasFocus) {
-                  game.focusNode.requestFocus();
-                }
-              },
-              child: GameWidget<PinballGame>(
-                game: game,
-                focusNode: game.focusNode,
-                initialActiveOverlays: const [PinballGame.playButtonOverlay],
-                overlayBuilderMap: {
-                  PinballGame.playButtonOverlay: (_, game) => const Positioned(
-                        bottom: 20,
-                        right: 0,
-                        left: 0,
-                        child: PlayButtonOverlay(),
-                      ),
-                  PinballGame.mobileControlsOverlay: (_, game) => Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: MobileControls(game: game),
-                      ),
-                  PinballGame.replayButtonOverlay: (context, game) =>
-                      const Positioned(
-                        bottom: 20,
-                        right: 0,
-                        left: 0,
-                        child: ReplayButtonOverlay(),
-                      ),
-                },
+            // The board/camera math (see CameraFocusingBehavior) assumes a
+            // 9:16 play area - on aspect ratios narrower than that (common
+            // on modern phones), letting the GameWidget stretch to fill the
+            // full screen pushes the launcher off the visible camera area.
+            // Pillarboxing/letterboxing to a fixed 9:16 box keeps the whole
+            // board (launcher included) always in view, regardless of the
+            // device's actual aspect ratio.
+            child: Center(
+              child: AspectRatio(
+                aspectRatio: 9 / 16,
+                child: MouseRegion(
+                  onHover: (_) {
+                    if (!game.focusNode.hasFocus) {
+                      game.focusNode.requestFocus();
+                    }
+                  },
+                  child: GameWidget<PinballGame>(
+                    game: game,
+                    focusNode: game.focusNode,
+                    initialActiveOverlays: const [
+                      PinballGame.playButtonOverlay,
+                    ],
+                    overlayBuilderMap: {
+                      PinballGame.playButtonOverlay: (_, game) =>
+                          const Positioned(
+                            bottom: 20,
+                            right: 0,
+                            left: 0,
+                            child: PlayButtonOverlay(),
+                          ),
+                      PinballGame.mobileControlsOverlay: (_, game) =>
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: MobileControls(game: game),
+                          ),
+                      PinballGame.replayButtonOverlay: (context, game) =>
+                          const Positioned(
+                            bottom: 20,
+                            right: 0,
+                            left: 0,
+                            child: ReplayButtonOverlay(),
+                          ),
+                      PinballGame.launchButtonOverlay: (context, game) =>
+                          Positioned(
+                            bottom: 20,
+                            right: 0,
+                            left: 0,
+                            child: LaunchButtonOverlay(game: game),
+                          ),
+                    },
+                  ),
+                ),
               ),
             ),
           ),

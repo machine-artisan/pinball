@@ -296,7 +296,13 @@ void main() {
       final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
       await gesture.addPointer(location: Offset.zero);
       addTearDown(gesture.removePointer);
-      await gesture.moveTo((game.size / 2).toOffset());
+      // The GameWidget is pillarboxed/letterboxed to a fixed 9:16 aspect
+      // ratio (see AspectRatio in pinball_game_page.dart), so its on-screen
+      // center no longer matches `game.size / 2` in every viewport shape.
+      final gameWidgetCenter = tester.getCenter(
+        find.byWidgetPredicate((w) => w is GameWidget<PinballGame>),
+      );
+      await gesture.moveTo(gameWidgetCenter);
       await tester.pump();
       expect(game.focusNode.hasFocus, isTrue);
     });

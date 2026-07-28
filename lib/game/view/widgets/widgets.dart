@@ -1,5 +1,6 @@
 export 'bonus_animation.dart';
 export 'game_hud.dart';
+export 'launch_button_overlay.dart';
 export 'mobile_controls.dart';
 export 'mobile_dpad.dart';
 export 'play_button_overlay.dart';

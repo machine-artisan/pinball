@@ -46,6 +46,9 @@ class PinballGame extends Forge2DGame
   /// Identifier of the mobile controls overlay.
   static const mobileControlsOverlay = 'mobile_controls';
 
+  /// Identifier of the launch button overlay.
+  static const launchButtonOverlay = 'launch_button';
+
   @override
   Color backgroundColor() => Colors.transparent;
 
@@ -195,6 +198,21 @@ class PinballGame extends Forge2DGame
   void onTapCancel(int pointerId) {
     _moveFlippersDown(pointerId);
     super.onTapCancel(pointerId);
+  }
+
+  /// Launches the ball, same as tapping the rocket sprite directly.
+  ///
+  /// Exposed as a public method so an always-visible overlay button can
+  /// trigger it - the rocket sprite's tap target isn't discoverable and can
+  /// render outside the visible camera area on some aspect ratios.
+  void launchBall() {
+    if (_gameBloc.state.status.isPlaying) {
+      descendants()
+          .whereType<FlameBlocProvider<PlungerCubit, PlungerState>>()
+          .first
+          .bloc
+          .autoPulled();
+    }
   }
 
   void _moveFlippersDown(int pointerId) {

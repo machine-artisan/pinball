@@ -51,6 +51,15 @@ class _TestGame extends Forge2DGame with TapCallbacks {
         );
       },
     );
+    overlays.addEntry(
+      'launch_button',
+      (context, game) {
+        return PinballButton(
+          text: 'launch',
+          onTap: () => {},
+        );
+      },
+    );
     return ensureAdd(
       FlameMultiBlocProvider(
         providers: [
