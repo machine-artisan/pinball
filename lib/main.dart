@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer' as developer;
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -25,7 +26,22 @@ Future<App> bootstrap() async {
       AuthenticationRepository(FirebaseAuth.instance);
   final pinballAudioPlayer = PinballAudioPlayer();
   final platformHelper = PlatformHelper();
-  await authenticationRepository.authenticateAnonymously();
+
+  try {
+    await authenticationRepository.authenticateAnonymously();
+  } on AuthenticationException catch (error, stackTrace) {
+    // Play as a guest rather than leaving the app stuck on a blank screen:
+    // sign-in only fails when Firebase isn't configured for this environment
+    // (e.g. no valid API key), and nothing in the core gameplay actually
+    // requires a signed-in user - only score submission does.
+    developer.log(
+      'Anonymous sign-in failed, continuing as guest.',
+      name: 'bootstrap',
+      error: error,
+      stackTrace: stackTrace,
+    );
+  }
+
   return App(
     authenticationRepository: authenticationRepository,
     leaderboardRepository: leaderboardRepository,
