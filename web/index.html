@@ -70,10 +70,16 @@
     ga('create', 'UA-67589403-1', 'auto');
     ga('send', 'pageview');
   </script>
-  <script src="/__/firebase/8.10.1/firebase-app.js"></script>
-  <script src="/__/firebase/8.10.1/firebase-firestore.js"></script>
-  <script src="/__/firebase/8.10.1/firebase-auth.js"></script>
-  <script src="/__/firebase/init.js"></script>
+  <!--
+    Older FlutterFire versions needed the Firebase JS SDK loaded manually
+    here (and, when deployed on Firebase Hosting, "/__/firebase/init.js" to
+    auto-inject project config). Current firebase_core_web loads the SDK
+    itself from https://www.gstatic.com/firebasejs/ and explicitly warns
+    against also declaring it here - see firebase_core_web's
+    initializeApp(), which prints that exact guidance. It also means this
+    no longer depends on Firebase Hosting's "/__/firebase/*" auto-serving,
+    so it works the same when served by any static file server.
+  -->
 </head>
 
 <body>
