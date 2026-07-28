@@ -5,7 +5,6 @@ import 'package:flame/components.dart';
 import 'package:flame/src/gestures/events.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flame_test/flame_test.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -32,10 +31,13 @@ class _TestPinballGame extends PinballGame {
           audioPlayer: _MockPinballAudioPlayer(),
           platformHelper: _MockPlatformHelper(),
         ) {
-    // GameBlocStatusListener adds this overlay on GameStatus.playing; this
-    // bare FlameTester harness never builds a real GameWidget with an
+    // BallSpawningBehavior adds this overlay on ball spawn; this bare
+    // FlameTester harness never builds a real GameWidget with an
     // overlayBuilderMap, so it must be pre-registered or overlays.add throws.
-    overlays.addEntry(PinballGame.launchButtonOverlay, (_, __) => const SizedBox());
+    overlays.addEntry(
+      PinballGame.launchButtonOverlay,
+      (_, __) => const SizedBox(),
+    );
   }
 
   Future<void> preLoad() async {
@@ -56,7 +58,10 @@ class _TestDebugPinballGame extends DebugPinballGame {
           audioPlayer: _MockPinballAudioPlayer(),
           platformHelper: _MockPlatformHelper(),
         ) {
-    overlays.addEntry(PinballGame.launchButtonOverlay, (_, __) => const SizedBox());
+    overlays.addEntry(
+      PinballGame.launchButtonOverlay,
+      (_, __) => const SizedBox(),
+    );
   }
 
   Future<void> preLoad() async {

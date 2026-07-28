@@ -164,11 +164,7 @@ class PinballGame extends Forge2DGame
       final tappedRocket =
           bounds.contains(screenToWorld(info.eventPosition.widget).toOffset());
       if (tappedRocket) {
-        descendants()
-            .whereType<FlameBlocProvider<PlungerCubit, PlungerState>>()
-            .first
-            .bloc
-            .autoPulled();
+        launchBall();
       } else {
         final tappedLeftSide = info.eventPosition.widget.x < canvasSize.x / 2;
         focusedBoardSide[pointerId] =
@@ -204,7 +200,10 @@ class PinballGame extends Forge2DGame
   ///
   /// Exposed as a public method so an always-visible overlay button can
   /// trigger it - the rocket sprite's tap target isn't discoverable and can
-  /// render outside the visible camera area on some aspect ratios.
+  /// render outside the visible camera area on some aspect ratios. Hides
+  /// that overlay immediately after: it's only relevant while a ball is
+  /// sitting on the launch ramp waiting to be launched, and reappears via
+  /// BallSpawningBehavior once the next ball is loaded.
   void launchBall() {
     if (_gameBloc.state.status.isPlaying) {
       descendants()
@@ -212,6 +211,7 @@ class PinballGame extends Forge2DGame
           .first
           .bloc
           .autoPulled();
+      overlays.remove(launchButtonOverlay);
     }
   }
 

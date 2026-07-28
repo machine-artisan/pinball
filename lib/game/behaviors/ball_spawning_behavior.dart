@@ -36,5 +36,6 @@ class BallSpawningBehavior extends Component
       ..zIndex = ZIndexes.ballOnLaunchRamp;
 
     canvas.add(ball);
+    game.overlays.add(PinballGame.launchButtonOverlay);
   }
 }

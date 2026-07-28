@@ -2,6 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_test/flame_test.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pinball/game/behaviors/ball_spawning_behavior.dart';
@@ -22,6 +23,10 @@ class _TestGame extends Forge2DGame {
     List<Component> children, {
     GameBloc? gameBloc,
   }) async {
+    overlays.addEntry(
+      PinballGame.launchButtonOverlay,
+      (_, __) => const SizedBox(),
+    );
     await ensureAdd(
       FlameMultiBlocProvider(
         providers: [

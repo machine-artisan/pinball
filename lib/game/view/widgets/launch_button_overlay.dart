@@ -21,9 +21,18 @@ class LaunchButtonOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return PinballButton(
-      text: l10n.launch,
-      onTap: game.launchBall,
+    // Unlike Play/Replay (shown once, at deliberate checkpoints), this
+    // button reappears every ball/round, so it's kept noticeably smaller
+    // than the full-size PinballButton the others use.
+    return SizedBox(
+      width: 120,
+      height: 56,
+      child: FittedBox(
+        child: PinballButton(
+          text: l10n.launch,
+          onTap: game.launchBall,
+        ),
+      ),
     );
   }
 }

@@ -26,7 +26,9 @@ class GameBlocStatusListener extends Component
         game.descendants().whereType<Plunger>().forEach(_addPlungerBehaviors);
         game.overlays.remove(PinballGame.playButtonOverlay);
         game.overlays.remove(PinballGame.replayButtonOverlay);
-        game.overlays.add(PinballGame.launchButtonOverlay);
+        // launchButtonOverlay is shown by BallSpawningBehavior instead (it
+        // fires for both "game just started" and "new ball loaded after a
+        // drain", which is exactly when a launch is available).
         break;
       case GameStatus.gameOver:
         readProvider<PinballAudioPlayer>().play(PinballAudio.gameOverVoiceOver);
