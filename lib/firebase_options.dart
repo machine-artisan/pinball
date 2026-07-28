@@ -49,22 +49,21 @@ class DefaultFirebaseOptions {
     }
   }
 
-  // These were never filled in with a real Firebase project (all values
-  // were empty strings), which made every Firebase call fail with
-  // auth/invalid-api-key. Firebase treats any "demo-" prefixed projectId as
-  // emulator-only - it's never sent to real Firebase servers, so it's safe
-  // to hardcode here and matches the project alias in .firebaserc. Local
-  // dev must run against the Firebase Local Emulator Suite (see
-  // firebase.json) with --dart-define=USE_FIREBASE_EMULATOR=true; a real
-  // deployment still needs `flutterfire configure` run against an actual
-  // Firebase project to replace these.
+  // Real project (my-flutter-init, dedicated "io-pinball" Web app) as of
+  // 2026-07-28. Safe to run locally without extra care: the Firebase Local
+  // Emulator Suite (see firebase.json) intercepts Auth/Firestore calls
+  // whenever the app is launched with --dart-define=USE_FIREBASE_EMULATOR=true,
+  // regardless of the real project id here - no traffic reaches these real
+  // servers in that mode. Without that flag, calls go to the real project,
+  // so always pass it for local dev/testing.
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'demo-io-pinball-api-key',
-    appId: '1:000000000000:web:0000000000000000000000',
-    messagingSenderId: '000000000000',
-    projectId: 'demo-io-pinball',
-    authDomain: 'demo-io-pinball.firebaseapp.com',
-    storageBucket: 'demo-io-pinball.appspot.com',
+    apiKey: 'AIzaSyBboLFz_5VrbeogNev7Mp7CZdOtKsrHA9o',
+    appId: '1:834498413104:web:258bdd6af44b4db810a3f5',
+    messagingSenderId: '834498413104',
+    projectId: 'my-flutter-init',
+    authDomain: 'my-flutter-init.firebaseapp.com',
+    storageBucket: 'my-flutter-init.firebasestorage.app',
+    measurementId: 'G-PKF7S1DG7E',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
