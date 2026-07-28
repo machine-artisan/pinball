@@ -162,8 +162,9 @@ class _SingleAudioPool extends _Audio {
   @override
   Future<void> load() async {
     pool = await createAudioPool(
-      source: DeviceFileSource(prefixFile(path), mimeType: 'audio/mpeg'),
+      source: AssetSource(prefixFile(path), mimeType: 'audio/mpeg'),
       maxPlayers: maxPlayers,
+      audioCache: AudioCache(prefix: ''),
     );
   }
 
@@ -194,14 +195,14 @@ class _RandomABAudio extends _Audio {
     await Future.wait(
       [
         createAudioPool(
-          source:
-              DeviceFileSource(prefixFile(audioAssetA), mimeType: 'audio/mpeg'),
+          source: AssetSource(prefixFile(audioAssetA), mimeType: 'audio/mpeg'),
           maxPlayers: 4,
+          audioCache: AudioCache(prefix: ''),
         ).then((pool) => audioA = pool),
         createAudioPool(
-          source:
-              DeviceFileSource(prefixFile(audioAssetB), mimeType: 'audio/mpeg'),
+          source: AssetSource(prefixFile(audioAssetB), mimeType: 'audio/mpeg'),
           maxPlayers: 4,
+          audioCache: AudioCache(prefix: ''),
         ).then((pool) => audioB = pool),
       ],
     );

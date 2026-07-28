@@ -50,7 +50,7 @@ class SourceMatcher extends Matcher {
 
   @override
   bool matches(dynamic item, Map matchState) =>
-      (item as DeviceFileSource).path == path;
+      (item as AssetSource).path == path;
 
   @override
   Description describe(Description description) =>
@@ -69,7 +69,7 @@ void main() {
 
     setUpAll(() {
       registerFallbackValue(_MockAudioCache());
-      registerFallbackValue(DeviceFileSource('/packages/pinball_audio'));
+      registerFallbackValue(AssetSource('/packages/pinball_audio'));
     });
 
     setUp(() {
@@ -78,6 +78,7 @@ void main() {
         () => createAudioPool.onCall(
           source: any(named: 'source'),
           maxPlayers: any(named: 'maxPlayers'),
+          audioCache: any(named: 'audioCache'),
         ),
       ).thenAnswer((_) async => _MockAudioPool());
 
@@ -125,6 +126,7 @@ void main() {
                   SourceMatcher('packages/pinball_audio/${Assets.sfx.kickerA}'),
             ),
             maxPlayers: 4,
+            audioCache: any(named: 'audioCache'),
           ),
         ).called(1);
 
@@ -136,6 +138,7 @@ void main() {
                   SourceMatcher('packages/pinball_audio/${Assets.sfx.kickerB}'),
             ),
             maxPlayers: 4,
+            audioCache: any(named: 'audioCache'),
           ),
         ).called(1);
       });
@@ -153,6 +156,7 @@ void main() {
                   SourceMatcher('packages/pinball_audio/${Assets.sfx.kickerA}'),
             ),
             maxPlayers: 4,
+            audioCache: any(named: 'audioCache'),
           ),
         ).called(1);
 
@@ -164,6 +168,7 @@ void main() {
                   SourceMatcher('packages/pinball_audio/${Assets.sfx.kickerB}'),
             ),
             maxPlayers: 4,
+            audioCache: any(named: 'audioCache'),
           ),
         ).called(1);
       });
@@ -181,6 +186,7 @@ void main() {
                   SourceMatcher('packages/pinball_audio/${Assets.sfx.flipper}'),
             ),
             maxPlayers: 2,
+            audioCache: any(named: 'audioCache'),
           ),
         ).called(1);
       });
@@ -277,6 +283,7 @@ void main() {
                   SourceMatcher('packages/pinball_audio/${Assets.sfx.bumperA}'),
             ),
             maxPlayers: any(named: 'maxPlayers'),
+            audioCache: any(named: 'audioCache'),
           ),
         ).thenAnswer((_) async => bumperAPool);
 
@@ -291,6 +298,7 @@ void main() {
                   SourceMatcher('packages/pinball_audio/${Assets.sfx.bumperB}'),
             ),
             maxPlayers: any(named: 'maxPlayers'),
+            audioCache: any(named: 'audioCache'),
           ),
         ).thenAnswer((_) async => bumperBPool);
       });
@@ -336,6 +344,7 @@ void main() {
                   SourceMatcher('packages/pinball_audio/${Assets.sfx.kickerA}'),
             ),
             maxPlayers: any(named: 'maxPlayers'),
+            audioCache: any(named: 'audioCache'),
           ),
         ).thenAnswer((_) async => kickerAPool);
 
@@ -350,6 +359,7 @@ void main() {
                   SourceMatcher('packages/pinball_audio/${Assets.sfx.kickerB}'),
             ),
             maxPlayers: any(named: 'maxPlayers'),
+            audioCache: any(named: 'audioCache'),
           ),
         ).thenAnswer((_) async => kickerBPool);
       });
@@ -394,6 +404,7 @@ void main() {
                   SourceMatcher('packages/pinball_audio/${Assets.sfx.flipper}'),
             ),
             maxPlayers: any(named: 'maxPlayers'),
+            audioCache: any(named: 'audioCache'),
           ),
         ).thenAnswer((_) async => pool);
       });
