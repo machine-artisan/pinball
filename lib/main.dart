@@ -15,9 +15,31 @@ import 'package:pinball_audio/pinball_audio.dart';
 import 'package:platform_helper/platform_helper.dart';
 import 'package:share_repository/share_repository.dart';
 
+/// Set at build/run time with `--dart-define=USE_FIREBASE_EMULATOR=true` to
+/// point Auth and Firestore at a local Firebase Emulator Suite instance
+/// (see firebase.json / `firebase emulators:start`) instead of real
+/// Firebase servers. Works in both debug and release builds, unlike a
+/// `kDebugMode` check, so it also applies to `flutter build web`.
+const _useFirebaseEmulator = bool.fromEnvironment('USE_FIREBASE_EMULATOR');
+
+/// The Firebase Emulator Suite always runs on the machine serving the app,
+/// so "localhost" is correct for web. A physical device or a real Android
+/// emulator would need the host machine's LAN IP (or 10.0.2.2 for the
+/// Android emulator) instead.
+const _firebaseEmulatorHost = 'localhost';
+
 Future<App> bootstrap() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  if (_useFirebaseEmulator) {
+    await FirebaseAuth.instance.useAuthEmulator(_firebaseEmulatorHost, 9099);
+    FirebaseFirestore.instance.useFirestoreEmulator(
+      _firebaseEmulatorHost,
+      8080,
+    );
+  }
+
   final leaderboardRepository =
       LeaderboardRepository(FirebaseFirestore.instance);
   const shareRepository =
